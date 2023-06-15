@@ -24,7 +24,6 @@ public class RotateByMouse : MonoBehaviour
 
         yaw += mouseX * anglePerSecond;
         yawY += mouseY * anglePerSecond * (-1);
-        Debug.Log(yawY);
 
         if (yawY > -90 && yawY < 90)
         {

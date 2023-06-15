@@ -1,30 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrenadeLauncher : MonoBehaviour
 {
+    public Text BulletText;
+    public GameObject TextReload;
+    float numerOfBullet = 5;
 
     public AudioSource ShootSound;
+    public AudioSource ReloadSound;
 
     public GameObject bulletReal;
     public Transform bulletSpawnPoint;
     public float bulletSpeed = 10;
     public GameObject bulletPrefab;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        BulletText.text = "Bullet: " + numerOfBullet;
+
+        if (numerOfBullet == 0)
+        {
+            TextReload.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                TextReload.SetActive(false);
+                numerOfBullet = 5;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
+            if (bulletReal.activeInHierarchy == true)
+            {
+                if (numerOfBullet > 0)
+                {
+                    numerOfBullet--;
+                }
+            }
+
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.right * bulletSpeed;
-            bulletReal.SetActive(false);
             Sound();
+            bulletReal.SetActive(false);
             Invoke("ActiveBullet", 5f);
             PlayVFX();
         }        
@@ -32,12 +52,19 @@ public class GrenadeLauncher : MonoBehaviour
 
     public void ActiveBullet()
     {
-        bulletReal.SetActive(true);
+        if (numerOfBullet > 0)
+        {
+            bulletReal.SetActive(true);
+            ReloadSound.Play();
+        }
     }
 
     public void Sound()
     {
-        ShootSound.Play();
+        if(bulletReal.activeInHierarchy == true)
+        {
+            ShootSound.Play();
+        }
     }
 
     public void PlayVFX()
