@@ -36,17 +36,6 @@ public class AutomaticShooting : MonoBehaviour
     private void Shoot()
     {
         shootSound.Play();
-        PerformRaycasting();
         onShoot.Invoke();
-    }
-
-   private void PerformRaycasting() 
-    {
-        Ray animingRay = new Ray(animingCamera.transform.position, animingCamera.transform.forward);
-        if(Physics.Raycast(animingRay, out RaycastHit hitInfo, 1000f, layerMask))
-        {
-            Quaternion effectRotation = Quaternion.LookRotation(hitInfo.normal);
-            Instantiate(hitMakerPrefab, hitInfo.point, effectRotation);
-        }
     }
 }
