@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
     public PlayerUI playerUI;
+    public Transform playerFoot;
+    public Health health;
 }
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour

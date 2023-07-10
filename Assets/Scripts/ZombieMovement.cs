@@ -15,6 +15,11 @@ public class ZombieMovement : MonoBehaviour
 
     private bool _isMovingValue;
 
+    private void Start()
+    {
+        playerFoot = Player.Instance.playerFoot;
+    }
+
     public bool IsMoving
     {
         get => _isMovingValue;
