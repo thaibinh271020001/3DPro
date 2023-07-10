@@ -42,6 +42,7 @@ public class GrenadeLauncher : MonoBehaviour
             }
 
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            bullet.layer = 3;
             bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.right * bulletSpeed;
             Sound();
             bulletReal.SetActive(false);

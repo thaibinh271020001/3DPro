@@ -12,12 +12,14 @@ public class ZombieMovement : MonoBehaviour
     public float reachingRadius;
     public UnityEvent onDestinationReached;
     public UnityEvent onStartMoving;
+    public MissionManager missionManager;
 
     private bool _isMovingValue;
 
     private void Start()
     {
         playerFoot = Player.Instance.playerFoot;
+        missionManager = Player.Instance.missionManager;
     }
 
     public bool IsMoving
@@ -57,6 +59,7 @@ public class ZombieMovement : MonoBehaviour
 
     public void OnDie()
     {
+        missionManager.OnZombieKilled();
         enabled = false;
         agent.isStopped = true;
     }

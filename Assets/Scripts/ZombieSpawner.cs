@@ -9,7 +9,6 @@ public class ZombieSpawner : MonoBehaviour
     public float radius;
     public int spawnQuantity;
     public float spawnInterval;
-    float distance;
 
 
 #if UNITY_EDITOR

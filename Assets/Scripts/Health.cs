@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected void Die()
     {
         onDie.Invoke();
     }
