@@ -9,11 +9,14 @@ public class MissionManager : MonoBehaviour
     public int requiredKill;
     public TMP_Text missionText;
     int remainingkills;
+    public Gate gate;
+    public GameObject exitGate;
 
     public Transform exitDoor;
     public Transform playerFoot;
 
     private int currentKill=-1;
+    private bool isPlayerExit;
 
     private void Start()
     {
@@ -31,7 +34,7 @@ public class MissionManager : MonoBehaviour
     private IEnumerator VerifyMissions()
     {
         yield return VerifyZombieKill();
-
+        yield return VeviryPlayerExit();
         //gameFlow.OnMissionCompleted();
     }
 
@@ -43,11 +46,22 @@ public class MissionManager : MonoBehaviour
 
     private IEnumerator VeviryPlayerExit()
     {
-        yield return new WaitUntil(IsPlayerExit);
+        gate.onPlayedEnter.AddListener(OnPlayerExit);
+        yield return new WaitUntil(() => isPlayerExit);
+        gate.onPlayedEnter.RemoveListener(OnPlayerExit);
     }
     public void OnZombieKilled() { 
         currentKill++;
         remainingkills--;
+        if (remainingkills == 0)
+        {
+            exitGate.SetActive(true);
+        }
+    }
+
+    private void OnPlayerExit()
+    {
+        isPlayerExit = true;
     }
 
     private bool IsPlayerExit()

@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PTK_Tunnel_Large
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2113dea347164f748b9c48514e713cee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2113dea347164f748b9c48514e713cee, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -1165,6 +1169,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4080084735793330, guid: 7c86d38630d69c3428eaa64a2437111f, type: 3}
   m_PrefabInstance: {fileID: 417526813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &657645455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 2113dea347164f748b9c48514e713cee, type: 3}
+  m_PrefabInstance: {fileID: 70945210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &665656329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4080084735793330, guid: 7c86d38630d69c3428eaa64a2437111f, type: 3}
@@ -1494,7 +1503,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705542470}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1462670688}
+        m_TargetAssemblyTypeName: GameFlow, Assembly-CSharp
+        m_MethodName: QuitToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &705542470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,7 +1586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 6534824503637240613, guid: 4a70c4d316aa1544e99e9b95b9105739, type: 3}
   radius: 2
-  spawnQuantity: 5
+  spawnQuantity: 4
   spawnInterval: 5
 --- !u!4 &732804334
 Transform:
@@ -3679,7 +3700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MissionMissionMissionMissionMissionMissionMissionMission
+  m_text: 082908478910JQKA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3944,6 +3965,8 @@ MonoBehaviour:
   gameFlow: {fileID: 1462670688}
   requiredKill: 5
   missionText: {fileID: 1362339139}
+  gate: {fileID: 1929772255}
+  exitGate: {fileID: 657645455}
   exitDoor: {fileID: 155245867}
   playerFoot: {fileID: 673745016}
 --- !u!4 &1405954462
@@ -4163,7 +4186,7 @@ GameObject:
   - component: {fileID: 1678644161}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5168,6 +5191,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916295689}
   m_CullTransparentMesh: 1
+--- !u!1 &1929772253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929772254}
+  - component: {fileID: 1929772256}
+  - component: {fileID: 1929772255}
+  m_Layer: 0
+  m_Name: ExitDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1929772254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929772253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.94, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 155245867}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929772255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929772253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e8aed411b2e784ba8d1e98bc354cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlayedEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1462670688}
+        m_TargetAssemblyTypeName: GameFlow, Assembly-CSharp
+        m_MethodName: OnMissionCompleted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &1929772256
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929772253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 1.8, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1999974466
 GameObject:
   m_ObjectHideFlags: 0
