@@ -5,7 +5,10 @@ using UnityEngine;
 public class GunSwitcher : MonoBehaviour
 {
     public GameObject[] guns;
+    public ShootByButton shootByButton;
 
+    private int currentIndex;
+#if UNITY_STANDALONE
     private void Update()
     {
         for(int i=0; i<guns.Length; i++)
@@ -15,12 +18,27 @@ public class GunSwitcher : MonoBehaviour
             }
         }
     }
+#endif
 
+    public void SwitchGun()
+    {
+        currentIndex = (currentIndex + 1) % guns.Length;
+        SetActiveGun(currentIndex);
+        if (shootByButton.isRifleGun)
+        {
+            shootByButton.isRifleGun = false;
+        }
+        else
+        {
+            shootByButton.isRifleGun = true;
+        }
+        
+    }
     public void SetActiveGun(int gunIndex)
     {
         for(int i =0; i < guns.Length; i++)
         {
-            bool isActive = (i == gunIndex);
+            bool isActive = (i != gunIndex);
             guns[i].SetActive(isActive);
 
             if (isActive)

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class AutomaticShooting : MonoBehaviour
 {
+    public Animator anim;
     public int rpm;
     public AudioSource shootSound;
     public GameObject hitMakerPrefab;
@@ -19,8 +20,13 @@ public class AutomaticShooting : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetMouseButton(0)){
+        /*if (Input.GetMouseButton(0))
+        {
             UpdateFiring();
+        }
+        else
+        {
+            DisableAnimationShooting();
         }*/
     }
 
@@ -30,6 +36,7 @@ public class AutomaticShooting : MonoBehaviour
         {
             Shoot();
             lastShot = Time.time;
+            anim.SetBool("Shooting", true);
         }
     }
 
@@ -37,5 +44,10 @@ public class AutomaticShooting : MonoBehaviour
     {
         shootSound.Play();
         onShoot.Invoke();
+    }
+
+    public void DisableAnimationShooting()
+    {
+        anim.SetBool("Shooting", false);
     }
 }

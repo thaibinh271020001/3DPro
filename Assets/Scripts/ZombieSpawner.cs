@@ -9,7 +9,9 @@ public class ZombieSpawner : MonoBehaviour
     public float radius;
     public int spawnQuantity;
     public float spawnInterval;
+    public Transform spawnPoint;
 
+    private bool isRunning;
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -18,11 +20,11 @@ public class ZombieSpawner : MonoBehaviour
         Gizmos.DrawSphere(transform.position, 0.2f);
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Handles.color = new Color(1, 0, 0, 0.1f);
         Handles.DrawSolidDisc(transform.position, Vector3.up, radius);
-    }
+    }*/
 #endif
     private void Start()
     {
@@ -39,18 +41,29 @@ public class ZombieSpawner : MonoBehaviour
 
     private void SpawnZombie()
     {
-        if(spawnQuantity > 0)
+        if (spawnQuantity > 0)
         {
-            Instantiate(zombiePrefab, transform.position, transform.rotation);
+            Instantiate(zombiePrefab, spawnPoint.position, transform.rotation);
             spawnQuantity--;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Player")
+        if(other.gameObject.name == "Player" && !isRunning)
         {
+            isRunning = true;
+            StartCoroutine(SpawnZombiesByTime());
             SpawnZombie();
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.name == "Player" && isRunning)
+        {
+            isRunning = false;
+            StopAllCoroutines();
         }
     }
 }

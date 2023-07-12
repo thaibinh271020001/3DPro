@@ -20,7 +20,7 @@ public class GrenadeLauncher : MonoBehaviour
     void Update()
     {
         BulletText.text = "Bullet: " + numerOfBullet;
-
+#if UNITY_STANDALONE
         if (numerOfBullet == 0)
         {
             TextReload.SetActive(true);
@@ -33,22 +33,38 @@ public class GrenadeLauncher : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (bulletReal.activeInHierarchy == true)
-            {
-                if (numerOfBullet > 0)
-                {
-                    numerOfBullet--;
-                }
-            }
+            ShootZocket();
+        }      
+#endif
+    }
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            bullet.layer = 3;
-            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.right * bulletSpeed;
-            Sound();
-            bulletReal.SetActive(false);
-            Invoke("ActiveBullet", 5f);
-            PlayVFX();
-        }        
+    public void TimeToReload()
+    {
+        Invoke("Reload", 3f);
+    }
+
+    public void Reload()
+    {
+        numerOfBullet = 5;
+    }
+
+    public void ShootZocket()
+    {
+        if (bulletReal.activeInHierarchy == true)
+        {
+            if (numerOfBullet > 0)
+            {
+                numerOfBullet--;
+            }
+        }
+
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        bullet.layer = 3;
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.right * bulletSpeed;
+        Sound();
+        bulletReal.SetActive(false);
+        Invoke("ActiveBullet", 5f);
+        PlayVFX();
     }
 
     public void ActiveBullet()
