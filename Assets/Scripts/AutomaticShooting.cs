@@ -19,12 +19,12 @@ public class AutomaticShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0)){
+        /*if (Input.GetMouseButton(0)){
             UpdateFiring();
-        }
+        }*/
     }
 
-    private void UpdateFiring()
+    public void UpdateFiring()
     {
         if (Time.time - lastShot >= interval)
         {

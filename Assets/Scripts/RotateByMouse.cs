@@ -8,6 +8,7 @@ public class RotateByMouse : MonoBehaviour
     float yaw = 0f;
     float yawY = 0f;
 
+#if UNITY_EDITOR || UNITY_STANDALONE
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -38,4 +39,5 @@ public class RotateByMouse : MonoBehaviour
             yawY = -90;
         }
     }
+#endif
 }

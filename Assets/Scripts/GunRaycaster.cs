@@ -13,12 +13,12 @@ public class GunRaycaster : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        /*if (Input.GetMouseButton(0))
         {
             PerformRaycasting();
-        }
+        }*/
     }
-    private void PerformRaycasting()
+    public void PerformRaycasting()
     {
         Ray animingRay = new Ray(animingCamera.transform.position, animingCamera.transform.forward);
         if (Physics.Raycast(animingRay, out RaycastHit hitInfo, 1000f, layerMaskZombie))
